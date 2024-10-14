@@ -1,6 +1,6 @@
-﻿/* Общий стиль для центрирования формы */
-body, html {
+﻿body, html {
     height: 100vh;
+    width: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@ body, html {
 }
 
 .form-container {
-    width: 600px; /* Фиксированная ширина */
+    width: 600px;
     max-width: 100%;
     padding: 20px;
     background-color: white;
@@ -23,7 +23,6 @@ body, html {
     gap: 20px;
 }
 
-/* Заголовок формы */
 .form-container h2 {
     text-align: center;
     color: #333;
@@ -31,7 +30,6 @@ body, html {
     font-weight: 600;
 }
 
-/* Стили для меток */
 form label {
     display: block;
     font-weight: 500;
@@ -40,7 +38,6 @@ form label {
     margin-bottom: 5px;
 }
 
-/* Стили для поля ввода */
 form input[type="text"] {
     width: 100%;
     padding: 12px 14px;
@@ -59,7 +56,6 @@ form input[type="text"]:focus {
     border-color: #007aff;
 }
 
-/* Кнопка отправки */
 form button[type="submit"] {
     width: 100%;
     padding: 12px;

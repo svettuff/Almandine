@@ -1,10 +1,125 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="form.css">
+  <script src="main.js"></script>
 </head>
 <body>
-$END$
+<div class="form-container">
+  <h2>Company Information</h2>
+
+  <form id="editProfileForm" onsubmit="event.preventDefault(); editProfile('editProfileForm');">
+
+    <div id="paymentNotification" class="payment-notification" style="display: none;">
+      <p>Your subscription is unpaid. Please complete your payment to be recommended.</p>
+      <button type="button" onclick="retryPayment('editProfileForm')">Pay Now</button>
+    </div>
+
+    <fieldset>
+      <label for="companyName">Company Name:</label>
+      <input type="text" id="companyName" name="companyName" required><br><br>
+
+      <label for="id">UID:</label>
+      <input type="text" id="id" name="id" required><br><br>
+
+      <label for="industry">Industry:</label>
+      <input type="text" id="industry" name="industry" required><br><br>
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required><br><br>
+
+      <label for="businessType">Business Type:</label>
+      <select id="businessType" name="businessType" required>
+        <option value="B2B">B2B</option>
+        <option value="B2C">B2C</option>
+        <option value="B2G">B2G</option>
+      </select><br><br>
+    </fieldset>
+
+    <fieldset>
+      <label for="description">Brief Description:</label>
+      <textarea id="description" name="description" required></textarea><br><br>
+
+      <label for="productCategory">Product/Service Category:</label>
+      <input type="text" id="productCategory" name="productCategory" required><br><br>
+
+      <label for="keyFeatures">Key Features/Unique Selling Propositions:</label>
+      <textarea id="keyFeatures" name="keyFeatures" required></textarea><br><br>
+    </fieldset>
+
+    <fieldset>
+      <label for="clientType">Client Type:</label>
+      <input type="text" id="clientType" name="clientType" required><br><br>
+
+      <label for="market">Market:</label>
+      <input type="text" id="market" name="market" required><br><br>
+    </fieldset>
+
+    <fieldset>
+      <label for="technologies">Main Technologies/Methods:</label>
+      <input type="text" id="technologies" name="technologies" required><br><br>
+
+      <label for="competencies">Key Competencies:</label>
+      <input type="text" id="competencies" name="competencies" required><br><br>
+    </fieldset>
+
+    <fieldset>
+      <label for="website">Website:</label>
+      <input type="url" id="website" name="website" required><br><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="phone">Phone number:</label>
+      <input type="tel" id="phone" name="phone" required><br><br>
+    </fieldset>
+
+    <button type="submit">Edit</button>
+    <div class="button-container">
+      <button id="deleteAndUnsubscribe" type="button" class="delete-button" onclick="deleteProfileAndUnsubscribe()">Delete Profile and Unsubscribe</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function populateFormFromSession() {
+    const profileData = sessionStorage.getItem('profileData');
+    const stripeStatus = sessionStorage.getItem('stripeStatus');
+
+    if (stripeStatus === "unpaid") {
+      document.getElementById("paymentNotification").style.display = "block";
+    }
+
+    if (profileData) {
+      const profile = JSON.parse(profileData);
+
+      document.getElementById('companyName').value = profile.companyName || '';
+      document.getElementById('id').value = profile.id || '';
+      document.getElementById('industry').value = profile.industry || '';
+      document.getElementById('location').value = profile.location || '';
+      document.getElementById('businessType').value = profile.businessType || '';
+      document.getElementById('description').value = profile.description || '';
+      document.getElementById('productCategory').value = profile.productCategory || '';
+      document.getElementById('keyFeatures').value = profile.keyFeatures || '';
+      document.getElementById('clientType').value = profile.clientType || '';
+      document.getElementById('market').value = profile.market || '';
+      document.getElementById('technologies').value = profile.technologies || '';
+      document.getElementById('competencies').value = profile.competencies || '';
+      document.getElementById('website').value = profile.website || '';
+      document.getElementById('email').value = profile.email || '';
+      document.getElementById('phone').value = profile.phone || '';
+    }
+  }
+
+  function redirectToPayment() {
+    alert("Redirecting to payment page.");
+  }
+
+  document.addEventListener('DOMContentLoaded', populateFormFromSession);
+</script>
+
 </body>
 </html>
