@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Verification</title>
+    <link rel="stylesheet" href="profileCodeCheck.css">
+    <script src="main.js"></script>
+</head>
+<body>
+<div class="form-container">
+    <h2>Code Verification</h2>
+    <form id="profileCodeCheckForm" onsubmit="event.preventDefault(); sendFormData('simpleForm');">
+        <!-- Single Field -->
+        <fieldset>
+            <label for="singleInput">Enter your code from email:</label>
+            <input type="text" id="singleInput" name="singleInput" placeholder="Xxx..." required><br><br>
+        </fieldset>
+        <!-- Submit Button -->
+        <button type="submit">Verify</button>
+    </form>
+</div>
+</body>
+</html>

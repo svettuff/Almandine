@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Information Form</title>
+  <link rel="stylesheet" href="form.css">
+  <script src="main.js"></script>
+</head>
+<body>
+<div class="form-container">
+  <h2>Company Information</h2>
+  <form id="profileForm" onsubmit="event.preventDefault(); sendFormData('profileForm');">
+    <!-- 1. General Information -->
+    <fieldset>
+      <label for="companyName">Company Name:</label>
+      <input type="text" id="companyName" name="companyName" placeholder="Official Name" required><br><br>
+
+      <label for="id">UID:</label>
+      <input type="text" id="id" name="id" placeholder="CHE-xxx.xxx.xxx" required><br><br>
+
+      <label for="industry">Industry:</label>
+      <input type="text" id="industry" name="industry" placeholder="Main sector of activity (e.g., IT, Manufacturing)" required><br><br>
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" placeholder="City" required><br><br>
+
+      <label for="businessType">Business Type:</label>
+      <select id="businessType" name="businessType" required>
+        <option value="B2B">B2B</option>
+        <option value="B2C">B2C</option>
+        <option value="B2G">B2G</option>
+      </select><br><br>
+    </fieldset>
+
+    <!-- 2. Description of Products or Services -->
+    <fieldset>
+      <label for="description">Brief Description:</label>
+      <textarea id="description" name="description" placeholder="Briefly describe the company's activities" required></textarea><br><br>
+
+      <label for="productCategory">Product/Service Category:</label>
+      <input type="text" id="productCategory" name="productCategory" placeholder="Specific products or services" required><br><br>
+
+      <label for="keyFeatures">Key Features/Unique Selling Propositions:</label>
+      <textarea id="keyFeatures" name="keyFeatures" placeholder="What makes your company stand out?" required></textarea><br><br>
+    </fieldset>
+
+    <!-- 3. Target Audience -->
+    <fieldset>
+      <label for="clientType">Client Type:</label>
+      <input type="text" id="clientType" name="clientType" placeholder="Target audience (e.g., small businesses, corporations)" required><br><br>
+
+      <label for="market">Market:</label>
+      <input type="text" id="market" name="market" placeholder="Local, international, or niche markets" required><br><br>
+    </fieldset>
+
+    <!-- 4. Key Competencies and Technologies -->
+    <fieldset>
+      <label for="technologies">Main Technologies/Methods:</label>
+      <input type="text" id="technologies" name="technologies" placeholder="Technologies or methods used by the company" required><br><br>
+
+      <label for="competencies">Key Competencies:</label>
+      <input type="text" id="competencies" name="competencies" placeholder="Core expertise areas" required><br><br>
+    </fieldset>
+
+    <!-- 5. Contact Information -->
+    <fieldset>
+      <label for="website">Website:</label>
+      <input type="url" id="website" name="website" placeholder="Company website URL" required><br><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+
+      <label for="phone">Phone number:</label>
+      <input type="tel" id="phone" name="phone" placeholder="Phone number" required><br><br>
+    </fieldset>
+
+    <button type="submit">Create</button>
+  </form>
+</div>
+</body>
+</html>
