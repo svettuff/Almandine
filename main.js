@@ -1,11 +1,14 @@
+// Redirects to the profile creation page
 function redirectCreateProfile() {
     window.location.href = 'createProfile.html';
 }
 
+// Redirects to the profile code verification page
 function redirectEditProfile() {
     window.location.href = 'profileCodeVerification.html';
 }
 
+// Sends a request and handles errors
 async function sendRequest(url, data) {
     try {
         const response = await fetch(url, {
@@ -33,11 +36,12 @@ async function sendRequest(url, data) {
     }
 }
 
+// Performs search and displays results
 async function performSearch() {
     const searchQuery = document.getElementById('search').value;
 
     if (!searchQuery) {
-        alert("Please enter a search query");
+        alert("Bitte geben Sie eine Suchanfrage ein"); // Please enter a search query
         return;
     }
 
@@ -59,22 +63,22 @@ async function performSearch() {
                 companyPanel.innerHTML = `
                     <div class="company-brief">
                         <strong>${company.companyName}</strong><br>
-                        Similarity: ${company.similarity}%
+                        Ähnlichkeit: ${company.similarity}%
                     </div>
                     <div class="company-details hidden">
-                        <p><strong>Industry:</strong> ${company.industry}</p>
-                        <p><strong>Location:</strong> ${company.location}</p>
-                        <p><strong>Business Type:</strong> ${company.businessType}</p>
-                        <p><strong>Description:</strong> ${company.description}</p>
-                        <p><strong>Product Category:</strong> ${company.productCategory}</p>
-                        <p><strong>Key Features:</strong> ${company.keyFeatures}</p>
-                        <p><strong>Client Type:</strong> ${company.clientType}</p>
-                        <p><strong>Market:</strong> ${company.market}</p>
-                        <p><strong>Technologies:</strong> ${company.technologies}</p>
-                        <p><strong>Competencies:</strong> ${company.competencies}</p>
-                        <p><strong>Website:</strong> <a href="${company.website}" target="_blank">${company.website}</a></p>
-                        <p><strong>Email:</strong> ${company.email}</p>
-                        <p><strong>Phone:</strong> ${company.phone}</p>
+                        <p><strong>Branche:</strong> ${company.industry}</p>
+                        <p><strong>Standort:</strong> ${company.location}</p>
+                        <p><strong>Geschäftstyp:</strong> ${company.businessType}</p>
+                        <p><strong>Kurze Beschreibung:</strong> ${company.description}</p>
+                        <p><strong>Produkt-/Dienstleistungskategorie:</strong> ${company.productCategory}</p>
+                        <p><strong>Hauptmerkmale:</strong> ${company.keyFeatures}</p>
+                        <p><strong>Kundentyp:</strong> ${company.clientType}</p>
+                        <p><strong>Markt:</strong> ${company.market}</p>
+                        <p><strong>Haupttechnologien/Methoden:</strong> ${company.technologies}</p>
+                        <p><strong>Schlüsselkompetenzen:</strong> ${company.competencies}</p>
+                        <p><strong>Webseite:</strong> <a href="${company.website}" target="_blank">${company.website}</a></p>
+                        <p><strong>E-Mail:</strong> ${company.email}</p>
+                        <p><strong>Telefonnummer:</strong> ${company.phone}</p>
                     </div>
                 `;
 
@@ -88,7 +92,7 @@ async function performSearch() {
 
             companyContainer.classList.remove('hidden');
         } else {
-            alert('No matching companies found');
+            alert('Keine passenden Unternehmen gefunden'); // No matching companies found
             companyContainer.classList.add('hidden');
         }
     } catch (error) {
@@ -96,6 +100,7 @@ async function performSearch() {
     }
 }
 
+// Toggles the panel display
 function togglePanel(panel) {
     const allPanels = document.querySelectorAll('.company-panel');
     const isActive = panel.classList.contains('active');
@@ -113,6 +118,7 @@ function togglePanel(panel) {
     }
 }
 
+// Smoothly scrolls to the panel
 function scrollToPanel(panel) {
     panel.scrollIntoView({
         behavior: "smooth",
@@ -120,6 +126,7 @@ function scrollToPanel(panel) {
     });
 }
 
+// Hides other panels when clicking outside
 document.addEventListener('click', (event) => {
     const isCompanyPanel = event.target.closest('.company-panel');
     if (!isCompanyPanel) {
@@ -131,6 +138,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
+// Creates a profile
 async function createProfile(formId) {
     const form = document.getElementById(formId);
     const formData = new FormData(form);
@@ -147,16 +155,17 @@ async function createProfile(formId) {
             const result = await sendRequest('https://server.almandine.ch:5000/create-company-profile', data);
             await initiateStripeCheckout(data.id);
         } else if (uidCheckResponse.message === "UID does not exist.") {
-            alert('Invalid UID: Company with this UID was not found.');
+            alert('Ungültige UID: Unternehmen mit dieser UID wurde nicht gefunden.'); // Invalid UID
         } else {
-            alert(`Unexpected response: ${uidCheckResponse.message || "No message provided"}`);
+            alert(`Unerwartete Antwort: ${uidCheckResponse.message || "Keine Nachricht angegeben"}`); // Unexpected response
         }
     } catch (error) {
         console.error("Error in sendFormData:", error);
-        alert(`Error: ${error.message}`);
+        alert(`Fehler: ${error.message}`);
     }
 }
 
+// Initiates a Stripe checkout session
 async function initiateStripeCheckout(uid) {
     try {
         const response = await fetch("https://server.almandine.ch:5000/create-checkout-session", {
@@ -179,6 +188,7 @@ async function initiateStripeCheckout(uid) {
     }
 }
 
+// Verifies the profile code
 async function verifyProfileCode(formId) {
     const form = document.getElementById(formId);
     const formData = new FormData(form);
@@ -194,18 +204,19 @@ async function verifyProfileCode(formId) {
         if (result.message === "Code verified") {
             sessionStorage.setItem('profileData', JSON.stringify(result.profile));
             sessionStorage.setItem('profileId', result.profile._id);
-            sessionStorage.setItem('stripeStatus', result.profile.stripeStatus)
-            sessionStorage.setItem('stripeCustomer', result.profile.stripeCustomer)
+            sessionStorage.setItem('stripeStatus', result.profile.stripeStatus);
+            sessionStorage.setItem('stripeCustomer', result.profile.stripeCustomer);
             window.location.href = 'editProfile.html';
         } else {
-            alert("Incorrect verification code! Try again.");
+            alert("Falscher Verifizierungscode! Versuchen Sie es erneut."); // Incorrect verification code! Try again
         }
     } catch (error) {
         console.error("Error in verifyProfileCode:", error);
-        alert(`Error: ${error.message}`);
+        alert(`Fehler: ${error.message}`);
     }
 }
 
+// Edits the profile
 async function editProfile(formId) {
     const form = document.getElementById(formId);
     const formData = new FormData(form);
@@ -221,16 +232,17 @@ async function editProfile(formId) {
         const result = await sendRequest('https://server.almandine.ch:5000/edit-profile', data);
 
         if (result.message === "Profile edited successfully") {
-            alert("Profile edited successfully!");
+            alert("Profil erfolgreich bearbeitet!"); // Profile edited successfully!
         } else {
-            alert("Failed to edit profile.");
+            alert("Profilbearbeitung fehlgeschlagen."); // Failed to edit profile
         }
     } catch (error) {
         console.error("Error in editProfile:", error);
-        alert(`Error: ${error.message}`);
+        alert(`Fehler: ${error.message}`);
     }
 }
 
+// Retries payment if needed
 async function retryPayment(formId) {
     const customer_id = sessionStorage.getItem('stripeCustomer');
     if (customer_id === "undefined") {
@@ -259,24 +271,25 @@ async function retryPayment(formId) {
         if (result.url) {
             window.location.href = result.url;
         } else {
-            alert(result.error || "Error creating payment session. Please try again.");
+            alert(result.error || "Fehler bei der Erstellung der Zahlungssitzung. Bitte versuchen Sie es erneut."); // Error creating payment session
         }
     } catch (error) {
         console.error("Error in retryPayment:", error);
-        alert("Failed to create payment session.");
+        alert("Zahlungssitzung konnte nicht erstellt werden."); // Failed to create payment session
     }
 }
 
+// Deletes profile and unsubscribes
 async function deleteProfileAndUnsubscribe() {
-    const confirmDelete = confirm("Are you sure you want to delete your profile and unsubscribe?");
+    const confirmDelete = confirm("Sind Sie sicher, dass Sie Ihr Profil löschen und Ihr Abonnement kündigen möchten?"); // Are you sure you want to delete your profile and unsubscribe?
     if (!confirmDelete) {
-        alert("Deletion cancelled.");
+        alert("Löschung abgebrochen."); // Deletion cancelled
         return;
     }
 
     const customer_id = sessionStorage.getItem('stripeCustomer');
     if (!customer_id) {
-        alert("Customer ID not found. Unable to delete profile.");
+        alert("Kunden-ID nicht gefunden. Profil konnte nicht gelöscht werden."); // Customer ID not found. Unable to delete profile
         return;
     }
 
@@ -292,14 +305,14 @@ async function deleteProfileAndUnsubscribe() {
         const result = await response.json();
 
         if (result.status === "success") {
-            alert("Your profile and subscription have been successfully deleted.");
+            alert("Ihr Profil und Abonnement wurden erfolgreich gelöscht."); // Your profile and subscription have been successfully deleted
             sessionStorage.clear();
             window.location.href = "index.html";
         } else {
-            alert(result.error || "An error occurred. Please try again.");
+            alert(result.error || "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."); // An error occurred. Please try again
         }
     } catch (error) {
         console.error("Error in deleteUserProfileAndUnsubscribe:", error);
-        alert("Failed to delete profile. Please try again.");
+        alert("Profil konnte nicht gelöscht werden. Bitte versuchen Sie es erneut."); // Failed to delete profile
     }
 }
