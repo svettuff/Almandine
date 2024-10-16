@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Almandine</title>
+    <title>Almandine.ch - KI-Plattform</title>
+    <meta name="description" content="Almandine.ch ist eine Plattform, auf der Unternehmen anonym ihre geschäftlichen Herausforderungen beschreiben und eine Liste empfohlener Anbieter über KI erhalten können. Lösungsanbieter erstellen Profile, abonnieren und erreichen potenzielle Kunden." />
+    <meta name="keywords" content="Almandine, Geschäftsproblemanalyse, KI-Lösungen, anonyme Plattform, Geschäftslösungen, empfohlene Anbieter, Zielgruppe" />
+    <meta name="robots" content="index, follow" />
     <link rel="stylesheet" href="search.css">
 </head>
+
 <body>
 <div class="title-container">
     <h1 class="title">Almandine.ch</h1>
-    <img src="flag-switzerland_1f1e8-1f1ed.png" alt="Swiss Flag" class="flag-icon">
+    <img src="flag-switzerland_1f1e8-1f1ed.png" alt="Schweizer Flagge" class="flag-icon">
 </div>
 <div class="search-container">
-    <input type="text" id="search" placeholder="Describe your problem fully anonymously...">
-    <button onclick="performSearch()">Analyze</button>
+    <input type="text" id="search" placeholder="Beschreiben Sie Ihr Problem vollständig anonym...">
+    <button onclick="performSearch()">Analysieren</button>
 </div>
 <div class="profile-container">
-    <button onclick="redirectCreateProfile()">Create Profile</button>
-    <button onclick="redirectEditProfile()">Edit Profile</button>
+    <button onclick="redirectCreateProfile()">Profil erstellen</button>
+    <button onclick="redirectEditProfile()">Profil bearbeiten</button>
 </div>
 
 <div id="company-container" class="company-container hidden">
 </div>
 
-<!-- Footer Section -->
 <footer class="footer">
-    <div>Need help? <a href="mailto:help@almandine.ch">help@almandine.ch</a></div>
-    <div><a href="https://www.privacypolicies.com/live/c703bd08-963b-42ea-b22e-5e9f3d7b575a" target="_blank">Privacy Policy</a></div>
+    <div>Benötigen Sie Hilfe? <a href="mailto:help@almandine.ch">help@almandine.ch</a></div>
+    <div><a href="https://www.privacypolicies.com/live/c703bd08-963b-42ea-b22e-5e9f3d7b575a" target="_blank">Datenschutzrichtlinie</a></div>
     <div>Arkadii Nahoha Software CHE-300.817.617</div>
 </footer>
 
