@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /createProfile.html
+Disallow: /editProfile.html
+Disallow: /profileCodeVerification.html
+Disallow: /form.css
+Disallow: /search.css
+Disallow: /profileCodeVerification.css
+Allow: /index.html
