@@ -52,7 +52,7 @@ body, html {
 .search-container input[type="text"] {
     width: 100%;
     padding: 20px 16px;
-    padding-right: 115px;
+    padding-right: 145px;
     font-size: 16px;
     border: 1px solid #d1d1d6;
     border-radius: 12px;
@@ -208,12 +208,12 @@ body, html {
         font-size: 12px;
         height: 50px;
         min-height: 35px;
-        right: 12px;
+        right: 8px;
     }
 
     .search-container input[type="text"] {
-        font-size: 14px;
-        padding-right: 85px;
+        font-size: 10px;
+        padding-right: 105px;
     }
 
     .profile-container button {
