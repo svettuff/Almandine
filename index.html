@@ -3,12 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Almandine.ch - KI-Plattform</title>
-    <meta name="description" content="Almandine.ch ist eine Plattform, auf der Unternehmen anonym ihre geschäftlichen Herausforderungen beschreiben und eine Liste empfohlener Anbieter über KI erhalten können. Lösungsanbieter erstellen Profile, abonnieren und erreichen potenzielle Kunden." />
+    <meta name="description" content="Almandine.ch ist eine Plattform, auf der Unternehmen anonym ihre geschäftlichen Herausforderungen beschreiben und empfohlene Anbieter über KI finden." />
     <meta name="keywords" content="Almandine, Geschäftsproblemanalyse, KI-Lösungen, anonyme Plattform, Geschäftslösungen, empfohlene Anbieter, Zielgruppe" />
-    <meta name="robots" content="index, follow" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Analyse von Geschäftsproblemen und KI-basierte Lösungen",
+            "name": "Almandine.ch",
+            "url": "https://almandine.ch",
+            "logo": "https://almandine.ch/logo.png",
+            "description": "Almandine.ch ist eine Plattform, auf der Unternehmen anonym ihre geschäftlichen Herausforderungen beschreiben und empfohlene Anbieter über KI finden.",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "help@almandine.ch",
+                "contactType": "Kundensupport",
+                "availableLanguage": ["de", "en"]
+            },
+            "areaServed": {
+                "@type": "Place",
+                "name": "Schweiz"
+            }
+        }
+    </script>
+
     <link rel="stylesheet" href="search.css">
+    <link rel="icon" href="logo.png" type="image/png">
 </head>
 
 <body>
@@ -17,7 +41,7 @@
     <img src="flag-switzerland_1f1e8-1f1ed.png" alt="Schweizer Flagge" class="flag-icon">
 </div>
 <div class="search-container">
-    <input type="text" id="search" placeholder="Beschreiben Sie Ihr Problem vollständig anonym...">
+    <input type="text" id="search" placeholder="Beschreiben Sie Ihr Geschäftsproblem völlig anonym...">
     <button onclick="performSearch()">Analysieren</button>
 </div>
 <div class="profile-container">
